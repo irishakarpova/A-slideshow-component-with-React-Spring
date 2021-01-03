@@ -1,7 +1,7 @@
 
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import ViewPager from './viewpager'
+import SlideShow from './components/SlideShow'
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <ViewPager/>
+      <SlideShow/>
     </React.Fragment>
   );
 }

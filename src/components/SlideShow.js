@@ -8,11 +8,11 @@ import Fab from '@material-ui/core/Fab';
 import AspectRatioIcon from '@material-ui/icons/AspectRatio';
 import {useStyles} from './style'
 import OversizeImage from './oversizeImg'
-import useWindowDimensions from './getScreen'
+import useWindowDimensions from './utils/getScreen'
 import {GET_LIST} from './query'
-import ProgressBar from './progressBar'
+import ProgressBar from './utils/progressBar'
 
-const Viewpager = () =>  {
+const SlideShow = () =>  {
     const index = useRef(0);
     
     const { width }  = useWindowDimensions();
@@ -83,7 +83,6 @@ const Viewpager = () =>  {
         setPrevWidth(width);
     }
     
-
     return(
         <>
             {isOpenCurrentImg ? (
@@ -127,5 +126,5 @@ const Viewpager = () =>  {
         </>
     )
 }
-export default Viewpager;
+export default SlideShow;
 
