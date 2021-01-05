@@ -3,14 +3,45 @@ import React, { useRef, useState } from 'react'
 import clamp from 'lodash-es/clamp'
 import { useGesture } from 'react-use-gesture'
 import { useSprings, animated } from 'react-spring'
-import { useQuery } from '@apollo/client';
 import Fab from '@material-ui/core/Fab';
 import AspectRatioIcon from '@material-ui/icons/AspectRatio';
 import {useStyles} from './style'
 import OversizeImage from './oversizeImg'
 import useWindowDimensions from './utils/getScreen'
-import {GET_LIST} from './query'
-import ProgressBar from './utils/progressBar'
+
+const serverData = [
+    {
+		id: "10",
+        label: 'Keel-billed toucan',
+        path: 'https://upload.wikimedia.org/wikipedia/commons/f/f6/Keel-billed_Toucan_%2816201157519%29.jpg'
+    },
+    {
+		id: "20",
+        label: 'Rainbow_Lorikeet.',
+        path: 'https://upload.wikimedia.org/wikipedia/commons/a/a8/Rainbow_Lorikeet_%28Trichoglossus_moluccanus%29_at_Adelaide_Airport_1.jpg'
+    },
+    {
+		id: "30",
+        label: 'Australian ringneck',
+        path: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Mallee_ringneck_42_-_Patchewollock.jpg/1920px-Mallee_ringneck_42_-_Patchewollock.jpg'
+    },
+    {
+		id: "40",
+        label: 'Rainbow Lorikeet',
+        path: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Atlantic_Puffin_Fratercula_arctica.jpg'
+    },
+    {
+		id: "50",
+        label: 'Rainbow_Lorikeet.',
+        path: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/BlueAndYellowMacaw_AraArarauna.jpg'
+    },
+    {
+		id: "60",
+        label: 'Rainbow_Lorikeet.',
+        path: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Trichoglossus_moluccanus_with_open_wings%2C_Brisbane.jpg'
+    },
+   
+]
 
 const SlideShow = () =>  {
     const index = useRef(0);
@@ -18,13 +49,9 @@ const SlideShow = () =>  {
     const { width }  = useWindowDimensions();
 
     const classes = useStyles(width)();
-
-    const { loading, error, data: serverData } = useQuery(GET_LIST);
-
-    if(loading) { <ProgressBar /> }
         
     const getImages = () => {
-        const data = serverData ? Object.values(serverData)[0] : [];
+        const data = Object.values(serverData);
         return data;
     }
 
@@ -66,7 +93,6 @@ const SlideShow = () =>  {
     const [currentImg, setCurrentImg] = useState(null)
     const [isOpenCurrentImg, setIsOpenCurrentImg] = useState(false)  
 
-    if (error) return `Error! ${error.message}`; 
       
     const handleClick = (currentI) => {
         setCurrentImg(currentI)    
