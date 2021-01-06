@@ -83,6 +83,7 @@ import { makeStyles } from '@material-ui/core/styles';
         },
         oversizeImg: {
             display: "block",
+            width:'100%',
             marginLeft: 'auto',
             marginRight: 'auto'
         },
