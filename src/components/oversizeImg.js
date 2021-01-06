@@ -9,11 +9,11 @@ export default function BigImage({handleClose, currentImg }) {
     const classes = useStyles();
     return (
         <Paper>
-        <Fab 
-            onClick = {handleClose}
-            className={classes.fabClose}>
-            <CloseIcon/>
-        </Fab>
+            <Fab 
+                onClick = {handleClose}
+                className={classes.fabClose}>
+                <CloseIcon/>
+            </Fab>
         <div className={classes.rootOversize}>        
             <img 
                 className={classes.oversizeImg}

@@ -71,7 +71,6 @@ import { makeStyles } from '@material-ui/core/styles';
         extendedFab: {
             position: 'absolute',
             zIndex: 100,
-           
             marginBottom: theme.spacing(1),
         },
         extendedIcon: {

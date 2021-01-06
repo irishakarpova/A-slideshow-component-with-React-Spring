@@ -110,7 +110,7 @@ const SlideShow = () =>  {
     }
     
     return(
-        <div>
+        <React.Fragment>
             {isOpenCurrentImg ? (
                 <OversizeImage 
                     currentImg={currentImg} 
@@ -149,7 +149,7 @@ const SlideShow = () =>  {
                     ): null
                 ))}
             </div>
-        </div>
+        </React.Fragment>
     )
 }
 export default SlideShow;
