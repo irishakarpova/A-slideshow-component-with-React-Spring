@@ -110,7 +110,7 @@ const SlideShow = () =>  {
     }
     
     return(
-        <>
+        <div>
             {isOpenCurrentImg ? (
                 <OversizeImage 
                     currentImg={currentImg} 
@@ -132,7 +132,7 @@ const SlideShow = () =>  {
                         <animated.picture key={i} {...bind()} 
                             className={classes.appExt} 
                             style={{display, transform: x !== undefined && x.interpolate(x => `translate3d(${x}px,0,0)`)}}>
-                            <>
+                            <div>
                                 <animated.source 
                                     className={classes.appInt} 
                                     srcSet= {data[i].path} 
@@ -144,12 +144,12 @@ const SlideShow = () =>  {
                                         alt={data[i].label} 
                                         style={{ display, transform: sc !== undefined && sc.interpolate(s => `scale(${s})`)}} />
                                 </animated.div>
-                            </> 
+                            </div> 
                         </animated.picture>
                     ): null
                 ))}
             </div>
-        </>
+        </div>
     )
 }
 export default SlideShow;
