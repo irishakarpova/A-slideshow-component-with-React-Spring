@@ -6,7 +6,8 @@ import { useSprings, animated } from 'react-spring'
 import Fab from '@material-ui/core/Fab';
 import AspectRatioIcon from '@material-ui/icons/AspectRatio';
 import {useStyles} from './style'
-import OversizeImage from './oversizeImg'
+import CloseIcon from '@material-ui/icons/Close';
+import Paper from '@material-ui/core/Paper';
 import useWindowDimensions from './utils/getScreen'
 
 const serverData = [
@@ -112,9 +113,20 @@ const SlideShow = () =>  {
     return(
         <React.Fragment>
             {isOpenCurrentImg ? (
-                <OversizeImage 
-                    currentImg={currentImg} 
-                    handleClose={handleClose} />
+            <Paper>
+                <Fab 
+                    onClick = {handleClose}
+                    className={classes.fabClose}>
+                    <CloseIcon/>
+                </Fab>
+                <div className={classes.rootOversize}>        
+                    <img 
+                        className={classes.oversizeImg}
+                        src={currentImg.path} 
+                        alt={currentImg.label}
+                    />
+                </div>
+            </Paper>
             ): null}
 
             <div className={classes.app}>
