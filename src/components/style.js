@@ -91,6 +91,9 @@ import { makeStyles } from '@material-ui/core/styles';
             backgroundColor: '#e3e3e3',
             width: '100vw',
             height: 'auto',
+            position:'absolute',
+            left: 0,
+            top: 0,
             zIndex: 2000,
             overflow: 'visible',
         }
