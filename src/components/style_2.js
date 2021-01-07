@@ -13,7 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
             width: '100%',
             maxWidth: 600,
             height: '100%',
-            maxHeight: 500,
+            maxHeight: 550,
             [theme.breakpoints.down('xs')]: {
                 maxHeight: `calc(${width}px / 1.5 )`,
             },
@@ -25,6 +25,7 @@ import { makeStyles } from '@material-ui/core/styles';
             position: "absolute",
             willChange: "transform",
             width: '100%',
+            padding: 20,
             height: '100%',
             overflow: 'hidden',
         },
@@ -67,7 +68,7 @@ import { makeStyles } from '@material-ui/core/styles';
     
         extendedFab: {
             zIndex: 100,
-            margin: theme.spacing(8),
+            margin: theme.spacing(4),
         },
         extendedIcon: {
             marginLeft: theme.spacing(2),
