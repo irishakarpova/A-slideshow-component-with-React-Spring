@@ -1,27 +1,25 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-    export const useStyles = (width) => {
-        return makeStyles((theme) => ({
+ export const useStyles = (width) => {
+    return makeStyles((theme) => ({
         root: {
           height: '100%',
           width: '100vw',
         },
         app: {
-            background: '#fafafa',
             display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'flex-end',
+            justifyContent: 'flex-end',
             position: 'absolute',
-            overscrollBehaviorY: "contain",
             width: '100%',
-            maxWidth: 600,
+            
             height: '100%',
-            maxHeight: 400,
+     
             [theme.breakpoints.down('xs')]: {
                 maxHeight: `calc(${width}px / 1.5 )`,
             },
             userSelect: 'none',
             overflow: 'hidden',
+            overscrollBehaviorY: "contain",
         },
         appExt: {
             position: "absolute",
@@ -53,6 +51,7 @@ import { makeStyles } from '@material-ui/core/styles';
             width: 200,
         },
         imgContainer:{
+            padding: 30,
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
@@ -65,12 +64,12 @@ import { makeStyles } from '@material-ui/core/styles';
             width: "100%",
             height: 'auto',
             borderRadius: 4,
-            boxShadow: "0 3px 8px -3px rgba(50, 50, 73, 0.2), 0 15px 35px -15.5px rgba(0, 0, 0, 0.6)",
+            boxShadow: "0 10px 20px -3px rgba(50, 50, 73, 0.6), 0 3px 8px -3px rgba(50, 50, 73, 0.6)",
         },
     
         extendedFab: {
             zIndex: 100,
-            marginBottom: theme.spacing(4),
+            margin: theme.spacing(8),
         },
         extendedIcon: {
             marginLeft: theme.spacing(2),
