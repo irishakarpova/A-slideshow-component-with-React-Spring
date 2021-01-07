@@ -78,6 +78,8 @@ import { makeStyles } from '@material-ui/core/styles';
         },
         fabClose: {
             position: 'fixed',
+            right: 0,
+            top: 0,
             zIndex: 2002,
             margin: theme.spacing(2),
         },
