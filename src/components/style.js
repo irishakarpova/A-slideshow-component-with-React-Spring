@@ -78,7 +78,7 @@ import { makeStyles } from '@material-ui/core/styles';
         },
         fabClose: {
             position: 'fixed',
-            zIndex: 400,
+            zIndex: 2002,
             margin: theme.spacing(2),
         },
         oversizeImg: {
