@@ -7,7 +7,6 @@ import { makeStyles } from '@material-ui/core/styles';
           width: '100vw',
         },
         app: {
-  
             background: '#fff',
             display: 'flex',
             justifyContent: 'center',
@@ -71,7 +70,6 @@ import { makeStyles } from '@material-ui/core/styles';
         },
     
         extendedFab: {
-            position: 'absolute',
             zIndex: 100,
             marginBottom: theme.spacing(1),
         },
