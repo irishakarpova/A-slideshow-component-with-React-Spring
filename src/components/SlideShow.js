@@ -57,7 +57,7 @@ const SlideShow = () =>  {
     }
 
     const getViewerSize = () => {
-        let viewerSize = width > 600 ?  width : width - 30
+        let viewerSize = width > 600 ?  600 : width - 30
         return viewerSize;
     }
     

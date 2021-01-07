@@ -11,9 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
             justifyContent: 'flex-end',
             position: 'absolute',
             width: '100%',
-            
+            maxWidth: 600,
             height: '100%',
-     
+            maxHeight: 500,
             [theme.breakpoints.down('xs')]: {
                 maxHeight: `calc(${width}px / 1.5 )`,
             },
@@ -64,7 +64,7 @@ import { makeStyles } from '@material-ui/core/styles';
             width: "100%",
             height: 'auto',
             borderRadius: 4,
-            boxShadow: "0 10px 20px -3px rgba(50, 50, 73, 0.6), 0 3px 8px -3px rgba(50, 50, 73, 0.6)",
+            boxShadow: "0 10px 20px -3px rgba(50, 50, 73, 0.4)",
         },
     
         extendedFab: {
