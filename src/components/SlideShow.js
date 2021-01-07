@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from 'react'
 import clamp from 'lodash-es/clamp'
 import { useGesture } from 'react-use-gesture'
@@ -45,6 +44,7 @@ const serverData = [
 ]
 
 const SlideShow = () =>  {
+
     const index = useRef(0);
     
     const { width }  = useWindowDimensions();
@@ -64,7 +64,7 @@ const SlideShow = () =>  {
     const [prevWidth, setPrevWidth] = useState(0);
 
     const [image, setImage] = useSprings(
-        getImages().length, i => ({ x: i * getViewerSize(), sc: 1, display: 'block' }))
+        getImages().length, i => ({ x: i * getViewerSize(), y: 0, sc: 1, display: 'block' }))
     
     const [ind, setInd] = React.useState(0)
 
@@ -78,18 +78,31 @@ const SlideShow = () =>  {
             return { x, sc, display: 'block' }
         })
     }
-
-    const bind = useGesture(({ down, delta: [xDelta], direction: [xDir], distance, cancel }) => {
-        if (down && distance > getViewerSize() / 3 && ((new Date()).getTime() - scrollFiredOn) > 500) {
-            setScrollFiredOn((new Date()).getTime());
-            const ii = clamp(index.current + (xDir > 0 ? -1 : 1), 0, getImages().length - 1);
-            down = false;
-            cancel((index.current = ii))
+    
+    const bind = useGesture({
+        config: {
+            event: {
+                passive: false,
+            },
+        },    
+        onAction: ({ event, down, delta: [xDelta], direction: [xDir], distance, cancel}) => {
+            event.preventDefault();
+            if (down && distance > getViewerSize() / 3
+            && ((new Date()).getTime() - scrollFiredOn) > 500) {
+                setScrollFiredOn((new Date()).getTime());
+                const ii = clamp(index.current + (xDir > 0 ? -1 : 1), 0, getImages().length - 1);
+      
+                cancel((index.current = ii))
+            }
+            applyImage(down, distance, xDelta);
+            setInd(index.current)
         }
-        applyImage(down, distance, xDelta);
-        setInd(index.current)
-    })
+     })
 
+
+     
+
+    React.useEffect(bind, [bind]) 
 
     const [currentImg, setCurrentImg] = useState(null)
     const [isOpenCurrentImg, setIsOpenCurrentImg] = useState(false)  
@@ -109,6 +122,7 @@ const SlideShow = () =>  {
         applyImage(true, 1, 1);
         setPrevWidth(width);
     }
+    
     
     return(
         <React.Fragment>

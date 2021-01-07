@@ -7,6 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
           width: '100vw',
         },
         app: {
+  
+            background: '#fff',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'flex-end',
