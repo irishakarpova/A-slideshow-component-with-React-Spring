@@ -26,7 +26,6 @@ import { makeStyles } from '@material-ui/core/styles';
             willChange: "transform",
             width: '100%',
             height: '100%',
-            padding: '20px',
             overflow: 'hidden',
         },
         appInt: {
@@ -51,7 +50,6 @@ import { makeStyles } from '@material-ui/core/styles';
             width: 200,
         },
         imgContainer:{
-            padding: 30,
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
