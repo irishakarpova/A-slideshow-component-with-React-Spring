@@ -85,14 +85,14 @@ import { makeStyles } from '@material-ui/core/styles';
         },
         oversizeImg: {
             display: "block",
-            width:'100%',
+            height:'100%',
             marginLeft: 'auto',
             marginRight: 'auto'
         },
         rootOversize:{
             backgroundColor: '#e3e3e3',
             width: '100vw',
-            height: 'auto',
+            height: '100vh',
             position:'absolute',
             left: 0,
             top: 0,
