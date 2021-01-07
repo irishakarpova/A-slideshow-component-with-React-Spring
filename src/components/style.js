@@ -88,11 +88,10 @@ import { makeStyles } from '@material-ui/core/styles';
             marginRight: 'auto'
         },
         rootOversize:{
-            position: 'absolute',
             backgroundColor: '#e3e3e3',
             width: '100vw',
             height: 'auto',
-            zIndex: 200,
+            zIndex: 2000,
             overflow: 'visible',
         }
     }))};
