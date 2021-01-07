@@ -99,9 +99,6 @@ const SlideShow = () =>  {
         }
      })
 
-
-     
-
     React.useEffect(bind, [bind]) 
 
     const [currentImg, setCurrentImg] = useState(null)
