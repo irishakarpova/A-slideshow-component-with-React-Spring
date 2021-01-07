@@ -4,7 +4,7 @@ import { useGesture } from 'react-use-gesture'
 import { useSprings, animated } from 'react-spring'
 import Fab from '@material-ui/core/Fab';
 import AspectRatioIcon from '@material-ui/icons/AspectRatio';
-import {useStyles} from './style'
+import {useStyles} from './style_2'
 import CloseIcon from '@material-ui/icons/Close';
 import Paper from '@material-ui/core/Paper';
 import useWindowDimensions from './utils/getScreen'

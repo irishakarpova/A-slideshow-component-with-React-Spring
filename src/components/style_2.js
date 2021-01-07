@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
           width: '100vw',
         },
         app: {
-            background: '#fff',
+            background: '#fafafa',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'flex-end',
@@ -22,7 +22,6 @@ import { makeStyles } from '@material-ui/core/styles';
             },
             userSelect: 'none',
             overflow: 'hidden',
-            boxShadow: "0 5px 5px -5px rgba(10, 50, 73, 0.2), 0 37.5px 75px -37.5px rgba(0, 0, 0, 0.6)"
         },
         appExt: {
             position: "absolute",
@@ -48,7 +47,6 @@ import { makeStyles } from '@material-ui/core/styles';
             width: '100%',
             height: '100%',
             willChange: 'transform',
-            boxShadow: "0 5px 5px -5px rgba(10, 50, 73, 0.2), 0 37.5px 75px -37.5px rgba(0, 0, 0, 0.6)"
         },
         appProgress: {
             borderRadius: 6,
@@ -67,11 +65,12 @@ import { makeStyles } from '@material-ui/core/styles';
             width: "100%",
             height: 'auto',
             borderRadius: 4,
+            boxShadow: "0 3px 8px -3px rgba(50, 50, 73, 0.2), 0 15px 35px -15.5px rgba(0, 0, 0, 0.6)",
         },
     
         extendedFab: {
             zIndex: 100,
-            marginBottom: theme.spacing(1),
+            marginBottom: theme.spacing(4),
         },
         extendedIcon: {
             marginLeft: theme.spacing(2),

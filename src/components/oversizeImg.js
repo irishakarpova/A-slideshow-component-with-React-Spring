@@ -3,7 +3,7 @@ import React from 'react'
 import Fab from '@material-ui/core/Fab';
 import CloseIcon from '@material-ui/icons/Close';
 import Paper from '@material-ui/core/Paper';
-import {useStyles} from './style'
+import {useStyles} from './style_2'
 
 
 export default function BigImage({handleClose, currentImg }) {
