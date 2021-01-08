@@ -9,47 +9,41 @@ import CloseIcon from '@material-ui/icons/Close';
 import Paper from '@material-ui/core/Paper';
 import useWindowDimensions from './utils/getScreen'
 
-const serverData = [
-    {
-		id: "10",
-        label: 'Keel-billed toucan',
-        path: 'https://upload.wikimedia.org/wikipedia/commons/f/f6/Keel-billed_Toucan_%2816201157519%29.jpg'
-    },
-    {
-		id: "20",
-        label: 'Rainbow_Lorikeet.',
-        path: 'https://upload.wikimedia.org/wikipedia/commons/a/a8/Rainbow_Lorikeet_%28Trichoglossus_moluccanus%29_at_Adelaide_Airport_1.jpg'
-    },
-    {
-		id: "30",
-        label: 'Australian ringneck',
-        path: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Mallee_ringneck_42_-_Patchewollock.jpg/1920px-Mallee_ringneck_42_-_Patchewollock.jpg'
-    },
-    {
-		id: "40",
-        label: 'Rainbow Lorikeet',
-        path: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Atlantic_Puffin_Fratercula_arctica.jpg'
-    },
-    {
-		id: "50",
-        label: 'Rainbow_Lorikeet.',
-        path: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/BlueAndYellowMacaw_AraArarauna.jpg'
-    },
-    {
-		id: "60",
-        label: 'Rainbow_Lorikeet.',
-        path: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Trichoglossus_moluccanus_with_open_wings%2C_Brisbane.jpg'
-    },
-   
-]
 
-const SlideShow = () =>  {
+const SlideShow = (props) =>  {
+    const { containerMaxWidth, 
+            serverData, 
+            imageRatio,
+            imageShadow, 
+            containerShadow,
+            showNextPtev 
+        } = props
 
     const index = useRef(0);
     
     const { width }  = useWindowDimensions();
 
-    const classes = useStyles(width)();
+    const getShadowContainer = () => {
+        let contShadow = (containerShadow === true) 
+            ? "0 10px 25px -20px rgba(0, 0, 0, 0.6)" 
+            : 'none'
+        return contShadow  
+    }
+    const getShadowImage = () => {
+        let imgShadow = (imageShadow === true) 
+            ? "0 0 15px rgba(50, 50, 73, 0.4)" 
+            : 'none'
+        return imgShadow  
+    }
+    let cShadow = getShadowContainer()
+    let iShadow = getShadowImage()
+
+    const classes = useStyles(
+        width, 
+        containerMaxWidth,
+        imageRatio,
+        iShadow,
+        cShadow)();
         
     const getImages = () => {
         const data = Object.values(serverData);
@@ -57,7 +51,13 @@ const SlideShow = () =>  {
     }
 
     const getViewerSize = () => {
-        let viewerSize = width > 600 ?  600 : width - 30
+        let widthNum;
+        let showEdges = showNextPtev === true ? 50 : 0; 
+        if (typeof containerMaxWidth === "string"){
+             widthNum = width * parseInt(containerMaxWidth) / 100 ;
+        } else
+             widthNum = containerMaxWidth
+        let viewerSize = width > 600 ?  widthNum - showEdges : width - 30
         return viewerSize;
     }
     
@@ -104,7 +104,6 @@ const SlideShow = () =>  {
     const [currentImg, setCurrentImg] = useState(null)
     const [isOpenCurrentImg, setIsOpenCurrentImg] = useState(false)  
 
-      
     const handleClick = (currentI) => {
         setCurrentImg(currentI)    
         setIsOpenCurrentImg(true)
