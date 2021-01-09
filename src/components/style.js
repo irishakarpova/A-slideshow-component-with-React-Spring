@@ -1,35 +1,39 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-    export const useStyles = (width) => {
-        return makeStyles((theme) => ({
+ export const useStyles = (
+    width, 
+    containerMaxWidth,
+    imageRatio,
+    iShadow,
+    cShadow) => {
+    return makeStyles((theme) => ({
         root: {
           height: '100%',
           width: '100vw',
         },
         app: {
-            background: '#fff',
             display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'flex-end',
+            justifyContent: 'flex-end',
             position: 'absolute',
-            overscrollBehaviorY: "contain",
             width: '100%',
-            maxWidth: 600,
+            maxWidth: containerMaxWidth,
             height: '100%',
-            maxHeight: 400,
+            maxHeight: `calc(${containerMaxWidth}px / ${imageRatio} )`,
             [theme.breakpoints.down('xs')]: {
-                maxHeight: `calc(${width}px / 1.5 )`,
+                maxHeight: `calc(${width}px / ${imageRatio})`,
+                maxWidth: '100%',
             },
             userSelect: 'none',
             overflow: 'hidden',
-            boxShadow: "0 5px 5px -5px rgba(10, 50, 73, 0.2), 0 37.5px 75px -37.5px rgba(0, 0, 0, 0.6)"
+            overscrollBehaviorY: "contain",
+            boxShadow: cShadow,
         },
         appExt: {
             position: "absolute",
             willChange: "transform",
             width: '100%',
+            padding: 20,
             height: '100%',
-            padding: '20px',
             overflow: 'hidden',
         },
         appInt: {
@@ -48,17 +52,17 @@ import { makeStyles } from '@material-ui/core/styles';
             width: '100%',
             height: '100%',
             willChange: 'transform',
-            boxShadow: "0 5px 5px -5px rgba(10, 50, 73, 0.2), 0 37.5px 75px -37.5px rgba(0, 0, 0, 0.6)"
         },
         appProgress: {
             borderRadius: 6,
             width: 200,
         },
         imgContainer:{
+            padding: 15,
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
-            height: '100%',
+            maxHeight: '100%',
             overflow: 'hidden',
             borderRadius: 4,
         },
@@ -67,11 +71,13 @@ import { makeStyles } from '@material-ui/core/styles';
             width: "100%",
             height: 'auto',
             borderRadius: 4,
+            boxShadow: iShadow,
         },
     
         extendedFab: {
             zIndex: 100,
-            marginBottom: theme.spacing(1),
+            opacity: .8,
+            margin: theme.spacing(6),
         },
         extendedIcon: {
             marginLeft: theme.spacing(2),

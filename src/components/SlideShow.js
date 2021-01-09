@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { useGesture } from 'react-use-gesture'
 import { useSprings, animated } from 'react-spring'
-import {useStyles} from './style_2'
+import {useStyles} from './style'
 import clamp from 'lodash-es/clamp'
 import Fab from '@material-ui/core/Fab';
 import AspectRatioIcon from '@material-ui/icons/AspectRatio';
@@ -16,7 +16,7 @@ const SlideShow = (props) =>  {
             imageShadow, 
             containerShadow,
             showNextPtev 
-        } = props
+        } = props;  
 
     const index = useRef(0);
     
@@ -48,20 +48,15 @@ const SlideShow = (props) =>  {
         const data = Object.values(serverData);
         return data;
     }
-    //const [shift, setShift] = React.useState(0)
-
-    const getShift = (showNextPtev) => {
-        return showNextPtev === true ? 50 : 0   
-    }
 
     const getViewerSize = () => {
         let widthNum;
-        //let showEdges = (showNextPtev === true) ? getShift() ; 
+        let showEdges = (showNextPtev === true) ? 50 : 0 ; 
         if (typeof containerMaxWidth === "string"){
              widthNum = width * parseInt(containerMaxWidth) / 100 ;
         } else
              widthNum = containerMaxWidth
-        let viewerSize = width > 600 ?  widthNum - getShift() : width - showNextPtev
+        let viewerSize = width > 600 ?  widthNum - showEdges : width - showEdges
         return viewerSize;
     }
     
@@ -123,7 +118,9 @@ const SlideShow = (props) =>  {
         setPrevWidth(width);
     }
 
-    
+    React.useEffect(() => {
+        applyImage(true, 1, 1);
+    })
     
     return(
         <React.Fragment>

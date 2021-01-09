@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import SlideShow from './components/SlideShow'
 import { ThemeProvider } from '@material-ui/core/styles';
