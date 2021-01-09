@@ -49,7 +49,7 @@ ReactDOM.render(
             containerRatio={1.4} 
             containerShadow={true}
             imageShadow={true}
-            showNextPtev={false}
+            showNextPtev={true}
           />
           
       </React.StrictMode>
