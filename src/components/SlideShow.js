@@ -48,16 +48,20 @@ const SlideShow = (props) =>  {
         const data = Object.values(serverData);
         return data;
     }
-    const [shift, setShift] = React.useState(0)
+    //const [shift, setShift] = React.useState(0)
+
+    const getShift = (showNextPtev) => {
+        return showNextPtev === true ? 50 : 0   
+    }
 
     const getViewerSize = () => {
         let widthNum;
-        let showEdges = (showNextPtev === true) ? 50 : 0; 
+        //let showEdges = (showNextPtev === true) ? getShift() ; 
         if (typeof containerMaxWidth === "string"){
              widthNum = width * parseInt(containerMaxWidth) / 100 ;
         } else
              widthNum = containerMaxWidth
-        let viewerSize = width > 600 ?  widthNum - showEdges : width - showNextPtev
+        let viewerSize = width > 600 ?  widthNum - getShift() : width - showNextPtev
         return viewerSize;
     }
     
@@ -118,9 +122,7 @@ const SlideShow = (props) =>  {
         applyImage(true, 1, 1);
         setPrevWidth(width);
     }
-    if(showNextPtev === true){
-        setShift(50)
-    }
+
     
     
     return(
