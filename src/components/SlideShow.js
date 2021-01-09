@@ -57,7 +57,7 @@ const SlideShow = (props) =>  {
              widthNum = width * parseInt(containerMaxWidth) / 100 ;
         } else
              widthNum = containerMaxWidth
-        let viewerSize = width > 600 ?  widthNum - showEdges : width - 30
+        let viewerSize = width > 600 ?  widthNum - showEdges : width - showNextPtev
         return viewerSize;
     }
     
