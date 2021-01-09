@@ -1,14 +1,13 @@
 import React, { useRef, useState } from 'react'
-import clamp from 'lodash-es/clamp'
 import { useGesture } from 'react-use-gesture'
 import { useSprings, animated } from 'react-spring'
+import {useStyles} from './style_2'
+import clamp from 'lodash-es/clamp'
 import Fab from '@material-ui/core/Fab';
 import AspectRatioIcon from '@material-ui/icons/AspectRatio';
-import {useStyles} from './style_2'
 import CloseIcon from '@material-ui/icons/Close';
 import Paper from '@material-ui/core/Paper';
 import useWindowDimensions from './utils/getScreen'
-
 
 const SlideShow = (props) =>  {
     const { containerMaxWidth, 
@@ -49,10 +48,11 @@ const SlideShow = (props) =>  {
         const data = Object.values(serverData);
         return data;
     }
+    const [shift, setShift] = React.useState(0)
 
     const getViewerSize = () => {
         let widthNum;
-        let showEdges = showNextPtev === true ? 50 : 0; 
+        let showEdges = (showNextPtev === true) ? 50 : 0; 
         if (typeof containerMaxWidth === "string"){
              widthNum = width * parseInt(containerMaxWidth) / 100 ;
         } else
@@ -117,6 +117,9 @@ const SlideShow = (props) =>  {
     if (prevWidth !== width) {
         applyImage(true, 1, 1);
         setPrevWidth(width);
+    }
+    if(showNextPtev === true){
+        setShift(50)
     }
     
     
