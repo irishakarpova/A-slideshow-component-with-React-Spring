@@ -32,7 +32,7 @@ import { makeStyles } from '@material-ui/core/styles';
             position: "absolute",
             willChange: "transform",
             width: '100%',
-            padding: 15,
+            padding: 0,
             height: '100%',
             overflow: 'hidden',
         },
