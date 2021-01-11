@@ -20,7 +20,8 @@ interface AppStateValue {
   showNextPrev: boolean
 }
 
-export default (props: AppStateValue) => {
+
+export default (props: AppStateValue) : JSX.Element => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
