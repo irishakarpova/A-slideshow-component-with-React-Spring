@@ -51,6 +51,7 @@ const SlideShow = (props) =>  {
     }
 
     const getViewerSize = () => {
+  
         let widthNum;
         let showEdges = (showNextPrev === true) ? (width > 600 ? 50 : 20) : 0; 
         if (typeof containerMaxWidth === "string"){
