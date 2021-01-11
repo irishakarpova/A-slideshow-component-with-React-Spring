@@ -13,12 +13,13 @@ interface AppStateValue {
       path: string
     } 
   >
-  containerRatio: number
   containerMaxWidth: number
+  containerRatio: number
   containerShadow: boolean
   imageShadow: boolean
   showNextPrev: boolean
 }
+
 
 export default (props: AppStateValue) : JSX.Element => {
   return (

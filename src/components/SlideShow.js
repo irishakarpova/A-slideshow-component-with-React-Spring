@@ -13,15 +13,18 @@ const SlideShow = (props) =>  {
 
     const index = useRef(0);
     
-    const { containerMaxWidth, 
-            serverData, 
+    const { serverData,
+            containerMaxWidth, 
             containerRatio,
-            imageShadow, 
             containerShadow,
+            imageShadow,
             showNextPrev 
         } = props;  
 
+     console.log(props)
+
     const { width }  = useWindowDimensions();
+    
 
     const getShadowContainer = () => {
         let contShadow = (containerShadow === true) 
