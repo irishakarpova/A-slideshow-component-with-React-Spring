@@ -21,6 +21,6 @@
     "jsx": "react"
   },
   "include": [
-    "src", "trash/App.tsx"
+    "src", "trash/App.tsx", "trash/images.js"
   ]
 }

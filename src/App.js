@@ -11,7 +11,7 @@ function App(props) {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <SlideShow 
-        imageRatio={props.containerRatio}
+        containerRatio={props.containerRatio}
         containerMaxWidth={ props.container } 
         containerShadow={props.containerShadow}
         imageShadow={props.imageShadow}

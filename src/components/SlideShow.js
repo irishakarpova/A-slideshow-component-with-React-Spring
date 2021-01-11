@@ -21,7 +21,7 @@ const SlideShow = (props) =>  {
             showNextPrev 
         } = props;  
 
-     console.log(props)
+     console.log("props", props)
 
     const { width }  = useWindowDimensions();
     
