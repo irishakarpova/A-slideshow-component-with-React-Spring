@@ -10,16 +10,17 @@ import Paper from '@material-ui/core/Paper';
 import useWindowDimensions from './utils/getScreen'
 
 const SlideShow = (props) =>  {
-    const { containerMaxWidth, 
-            serverData, 
-            imageRatio,
-            imageShadow, 
-            containerShadow,
-            showNextPtev 
-        } = props;  
 
     const index = useRef(0);
     
+    const { containerMaxWidth, 
+            serverData, 
+            containerRatio,
+            imageShadow, 
+            containerShadow,
+            showNextPrev 
+        } = props;  
+
     const { width }  = useWindowDimensions();
 
     const getShadowContainer = () => {
@@ -40,7 +41,7 @@ const SlideShow = (props) =>  {
     const classes = useStyles(
         width, 
         containerMaxWidth,
-        imageRatio,
+        containerRatio,
         iShadow,
         cShadow)();
         
@@ -51,17 +52,15 @@ const SlideShow = (props) =>  {
 
     const getViewerSize = () => {
         let widthNum;
-        let showEdges = (showNextPtev === true) ? 20 : 0 ; 
+        let showEdges = (showNextPrev === true) ? (width > 600 ? 50 : 20) : 0; 
         if (typeof containerMaxWidth === "string"){
-             widthNum = width * parseInt(containerMaxWidth) / 100 ;
+            widthNum = width * parseInt(containerMaxWidth) / 100;
         } else
-             widthNum = containerMaxWidth
-        let viewerSize = width > 600 ?  widthNum - showEdges : width - showEdges
-        return viewerSize;
+            widthNum = containerMaxWidth
+            let viewerSize = width > 600 ?  widthNum - showEdges : width - showEdges
+            return viewerSize;
     }
     
-    const [prevWidth, setPrevWidth] = useState(0);
-
     const [image, setImage] = useSprings(
         getImages().length, i => ({ x: i * getViewerSize(), y: 0, sc: 1, display: 'block' }))
     
@@ -90,15 +89,12 @@ const SlideShow = (props) =>  {
             && ((new Date()).getTime() - scrollFiredOn) > 500) {
                 setScrollFiredOn((new Date()).getTime());
                 const ii = clamp(index.current + (xDir > 0 ? -1 : 1), 0, getImages().length - 1);
-      
                 cancel((index.current = ii))
             }
             applyImage(down, distance, xDelta);
             setInd(index.current)
         }
      })
-
-    React.useEffect(bind, [bind]) 
 
     const [currentImg, setCurrentImg] = useState(null)
     const [isOpenCurrentImg, setIsOpenCurrentImg] = useState(false)  
@@ -112,11 +108,6 @@ const SlideShow = (props) =>  {
     }
 
     const data = getImages();
-
-    if (prevWidth !== width) {
-        applyImage(true, 1, 1);
-        setPrevWidth(width);
-    }
 
     React.useEffect(() => {
         applyImage(true, 1, 1);

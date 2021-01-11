@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
  export const useStyles = (
     width, 
     containerMaxWidth,
-    imageRatio,
+    containerRatio,
     iShadow,
     cShadow) => {
     return makeStyles((theme) => ({
@@ -18,9 +18,9 @@ import { makeStyles } from '@material-ui/core/styles';
             width: '100%',
             maxWidth: containerMaxWidth,
             height: '100%',
-            maxHeight: `calc(${containerMaxWidth}px / ${imageRatio} )`,
+            maxHeight: `calc(${containerMaxWidth}px / ${containerRatio} )`,
             [theme.breakpoints.down('xs')]: {
-                maxHeight: `calc(${width}px / ${imageRatio})`,
+                maxHeight: `calc(${width}px / ${containerRatio})`,
                 maxWidth: '100%',
             },
             userSelect: 'none',
@@ -32,7 +32,10 @@ import { makeStyles } from '@material-ui/core/styles';
             position: "absolute",
             willChange: "transform",
             width: '100%',
-            padding: 0,
+            padding: 20,
+            [theme.breakpoints.down('xs')]: {
+                padding: 0,
+            },
             height: '100%',
             overflow: 'hidden',
         },
