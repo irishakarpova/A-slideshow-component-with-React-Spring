@@ -6,12 +6,12 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './theme'
 
 interface AppStateValue {
-  serverData: Array<
-      {
-          id: string
-          label: string
-          path: string
-      } 
+  serverData: Array <
+    {
+      id: string
+      label: string
+      path: string
+    } 
   >
   containerRatio: number
   containerMaxWidth: number
@@ -21,7 +21,6 @@ interface AppStateValue {
 }
 
 export default (props: AppStateValue) => {
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
