@@ -1,9 +1,9 @@
 
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import SlideShow from '../src/components/SlideShow'
+import SlideShow from './components/SlideShow'
 import { ThemeProvider } from '@material-ui/core/styles';
-import theme from '../src/theme'
+import theme from './theme'
 
 interface AppStateValue {
   serverData: Array <
