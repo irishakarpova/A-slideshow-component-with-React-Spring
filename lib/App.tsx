@@ -21,7 +21,7 @@ interface AppStateValue {
 }
 
 
-export default (props: AppStateValue) : JSX.Element => {
+export default (props: AppStateValue) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
