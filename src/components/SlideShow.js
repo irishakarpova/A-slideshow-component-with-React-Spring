@@ -118,7 +118,7 @@ const SlideShow = (props) =>  {
     })
     
     return(
-        <React.Fragment>
+        <div>
             {isOpenCurrentImg ? (
             <Paper>
                 <Fab 
@@ -151,7 +151,7 @@ const SlideShow = (props) =>  {
                         <animated.picture key={i} {...bind()} 
                             className={classes.appExt} 
                             style={{display, transform: x !== undefined && x.interpolate(x => `translate3d(${x}px,0,0)`)}}>
-                            <React.Fragment>
+                            <div>
                                 <animated.source 
                                     className={classes.appInt} 
                                     srcSet= {data[i].path} 
@@ -163,12 +163,12 @@ const SlideShow = (props) =>  {
                                         alt={data[i].label} 
                                         style={{ display, transform: sc !== undefined && sc.interpolate(s => `scale(${s})`)}} />
                                 </animated.div>
-                            </React.Fragment> 
+                            </div> 
                         </animated.picture>
                     ): null
                 ))}
             </div>
-        </React.Fragment>
+        </div>
     )
 }
 export default SlideShow;
