@@ -21,11 +21,8 @@ const SlideShow = (props) =>  {
             showNextPrev 
         } = props;  
 
-     console.log("props", props)
-
-    const { width }  = useWindowDimensions();
+    const width = useWindowDimensions();
     
-
     const getShadowContainer = () => {
         let contShadow = (containerShadow === true) 
             ? "0 10px 25px -20px rgba(0, 0, 0, 0.6)" 
@@ -118,7 +115,7 @@ const SlideShow = (props) =>  {
     })
     
     return(
-        <div>
+        <React.Fragment>
             {isOpenCurrentImg ? (
             <Paper>
                 <Fab 
@@ -151,7 +148,7 @@ const SlideShow = (props) =>  {
                         <animated.picture key={i} {...bind()} 
                             className={classes.appExt} 
                             style={{display, transform: x !== undefined && x.interpolate(x => `translate3d(${x}px,0,0)`)}}>
-                            <div>
+                            <React.Fragment>
                                 <animated.source 
                                     className={classes.appInt} 
                                     srcSet= {data[i].path} 
@@ -163,12 +160,12 @@ const SlideShow = (props) =>  {
                                         alt={data[i].label} 
                                         style={{ display, transform: sc !== undefined && sc.interpolate(s => `scale(${s})`)}} />
                                 </animated.div>
-                            </div> 
+                            </React.Fragment> 
                         </animated.picture>
                     ): null
                 ))}
             </div>
-        </div>
+        </React.Fragment>
     )
 }
 export default SlideShow;
