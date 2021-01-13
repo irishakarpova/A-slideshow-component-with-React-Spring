@@ -1,15 +1,17 @@
 import React, { useRef, useState } from 'react'
 import { useDrag } from 'react-use-gesture'
 import { useSprings, animated } from 'react-spring'
-import {useStyles} from './style'
+import {useStyles} from '../src/components/style'
 import clamp from 'lodash-es/clamp'
 import Fab from '@material-ui/core/Fab';
 import AspectRatioIcon from '@material-ui/icons/AspectRatio';
 import CloseIcon from '@material-ui/icons/Close';
 import Paper from '@material-ui/core/Paper';
-import useWindowDimensions from './utils/getScreen'
+import useWindowDimensions from '../src/components/utils/getScreen'
+import { AppStateValue } from '../src/components/appStateValue'
 
-const SlideShow = (props) =>  {
+
+const SlideShow = (props: AppStateValue) =>  {
 
     const index = useRef(0);
     
@@ -70,7 +72,7 @@ const SlideShow = (props) =>  {
     
     const [ind, setInd] = React.useState(0)
   
-    const applyImage = (active, distance, mx) => {
+    const applyImage = (active: boolean, distance: number, mx: number) => {
         setImage((i) => {
             if (i < index.current - 1 || i > index.current + 1) return { display: 'none' }
             const x = (i - index.current) * getViewerSize()   + (active ? mx : 0)
@@ -84,7 +86,7 @@ const SlideShow = (props) =>  {
         if (active && distance > getViewerSize() / 3)
             cancel((index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, getImages().length  - 1)))
         
-        applyImage(active, distance, mx);
+        applyImage(active, distance, xDir);
         setInd(index.current)
     }
     )
@@ -92,7 +94,7 @@ const SlideShow = (props) =>  {
     const [currentImg, setCurrentImg] = useState(null)
     const [isOpenCurrentImg, setIsOpenCurrentImg] = useState(false)  
 
-    const handleClick = (currentI) => {
+    const handleClick = (currentI: any) => {
         setCurrentImg(currentI)    
         setIsOpenCurrentImg(true)
     }

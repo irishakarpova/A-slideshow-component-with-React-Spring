@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react'
-import { useDrag } from 'react-use-gesture'
+import { useGesture } from 'react-use-gesture'
 import { useSprings, animated } from 'react-spring'
-import {useStyles} from './style'
+import {useStyles} from '../src/components/style'
 import clamp from 'lodash-es/clamp'
 import Fab from '@material-ui/core/Fab';
 import AspectRatioIcon from '@material-ui/icons/AspectRatio';
 import CloseIcon from '@material-ui/icons/Close';
 import Paper from '@material-ui/core/Paper';
-import useWindowDimensions from './utils/getScreen'
+import useWindowDimensions from '../src/components/utils/getScreen'
+
 
 const SlideShow = (props) =>  {
 
@@ -62,32 +63,39 @@ const SlideShow = (props) =>  {
     }
     
     const [image, setImage] = useSprings(
-        getImages().length, i => ({ 
-            x: i * getViewerSize(), 
-            scale: 1, 
-            display: 'block' 
-        }))
+        getImages().length, i => ({ x: i * getViewerSize(), y: 0, sc: 1, display: 'block' }))
     
     const [ind, setInd] = React.useState(0)
-  
-    const applyImage = (active, distance, mx) => {
-        setImage((i) => {
+
+    const [scrollFiredOn, setScrollFiredOn] = useState(0);
+    
+    const applyImage = (down, distance, xDelta) => {
+        setImage( (i) => {
             if (i < index.current - 1 || i > index.current + 1) return { display: 'none' }
-            const x = (i - index.current) * getViewerSize()   + (active ? mx : 0)
-            const scale = active ? 1 - distance / getViewerSize() / 2  : 1
-            return { x, scale, display: 'block' }
+            const x = (i - index.current) * getViewerSize()   + (down ? xDelta : 0)
+            const sc = down ? 1 - distance / getViewerSize() / 2  : 1
+            return { x, sc, display: 'block' }
         })
     }
     
-    const bind = useDrag((
-    { active, movement: [mx], direction: [xDir], distance, cancel}) => {
-        if (active && distance > getViewerSize() / 3)
-            cancel((index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, getImages().length  - 1)))
-        
-        applyImage(active, distance, mx);
-        setInd(index.current)
-    }
-    )
+    const bind = useGesture({
+        config: {
+            event: {
+                passive: false,
+            },
+        },    
+        onAction: ({ event, down, delta: [xDelta], direction: [xDir], distance, cancel}) => {
+            event.preventDefault();
+            if (down && distance > getViewerSize() / 3
+            && ((new Date()).getTime() - scrollFiredOn) > 500) {
+                setScrollFiredOn((new Date()).getTime());
+                const ii = clamp(index.current + (xDir > 0 ? -1 : 1), 0, getImages().length - 1);
+                cancel((index.current = ii))
+            }
+            applyImage(down, distance, xDelta);
+            setInd(index.current)
+        }
+     })
 
     const [currentImg, setCurrentImg] = useState(null)
     const [isOpenCurrentImg, setIsOpenCurrentImg] = useState(false)  
@@ -135,22 +143,22 @@ const SlideShow = (props) =>  {
                         {`${ind + 1}  / ${data.length}`}
                     <AspectRatioIcon className={classes.extendedIcon} />
                 </Fab>
-                {image.map(({ x, display, scale }, i) => (
+                {image.map(({ x, display, sc }, i) => (
                     i < ind + 2 ? (
                         <animated.picture key={i} {...bind()} 
                             className={classes.appExt} 
-                            style={{display, x }}>
+                            style={{display, transform: x !== undefined && x.interpolate(x => `translate3d(${x}px,0,0)`)}}>
                             <React.Fragment>
                                 <animated.source 
                                     className={classes.appInt} 
                                     srcSet= {data[i].path} 
-                                />
+                                    alt={data[i].label} />
                                 <animated.div className={classes.imgContainer}>
                                     <animated.img 
                                         className={classes.appIntImg} 
                                         src={data[i].path} 
                                         alt={data[i].label} 
-                                        style={{ scale }} />
+                                        style={{ display, transform: sc !== undefined && sc.interpolate(s => `scale(${s})`)}} />
                                 </animated.div>
                             </React.Fragment> 
                         </animated.picture>

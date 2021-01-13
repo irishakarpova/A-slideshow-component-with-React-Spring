@@ -18,9 +18,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    "sourceMap": true
   },
   "include": [
-    "src", "src/App.tsx", "trash/images.js"
+    "src",
+    "trash/SlideShow bkp.js"
   ]
 }

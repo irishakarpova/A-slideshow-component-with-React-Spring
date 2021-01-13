@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react'
 import { useDrag } from 'react-use-gesture'
 import { useSprings, animated } from 'react-spring'
-import {useStyles} from './style'
+import {useStyles} from '../src/components/style'
 import clamp from 'lodash-es/clamp'
 import Fab from '@material-ui/core/Fab';
 import AspectRatioIcon from '@material-ui/icons/AspectRatio';
 import CloseIcon from '@material-ui/icons/Close';
 import Paper from '@material-ui/core/Paper';
-import useWindowDimensions from './utils/getScreen'
+import useWindowDimensions from '../src/components/utils/getScreen'
+
 
 const SlideShow = (props) =>  {
 
@@ -84,7 +85,7 @@ const SlideShow = (props) =>  {
         if (active && distance > getViewerSize() / 3)
             cancel((index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, getImages().length  - 1)))
         
-        applyImage(active, distance, mx);
+        applyImage(active, distance, xDir);
         setInd(index.current)
     }
     )
