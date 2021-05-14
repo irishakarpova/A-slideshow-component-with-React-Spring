@@ -3,19 +3,12 @@ schema {
 }
 
 type Item {
-    id: ID!
-    path: String!
-    label: String!
+  id: ID!
+  path: String!
+  label: String!
 }
 
 type Query {
-    getList: [Item]!
-    getItem(id: ID!): Item!
+  getList: [Item]!
+  getItem(id: ID!): Item!
 }
-
-
-
-
-
-
-
